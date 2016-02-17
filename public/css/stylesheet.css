@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Passion One', cursive;
   background-color: #18bc9c;
   color: white;
   padding-top: 100px;
@@ -17,20 +17,19 @@ Nav-Bar Styling
   color:white;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-family: Lobster;
+  font-size: 300%;
 }
 
 .navbar-default .navbar-nav>li>a {
   color: white;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 163%;
 }
 .navbar-default .navbar-nav >li>a:focus,
   .navbar-default .navbar-nav >li>a:hover {
       color: #18bc9c;
-}
-
-.navbar-brand {
-  font-size: 250%;
 }
 
 .navbar-default .navbar-toggle{
@@ -52,8 +51,12 @@ Template-Main Styling
 .template-main .profile-pic{
   max-width: 100%;
   height: auto;
-  margin-top: 30px;
+  margin-top: 33%;
   border-radius: 50%;
+}
+
+.job-description{
+  margin-top: 30px;
 }
 
 .logo-div {

@@ -23,8 +23,9 @@ portfolioApp.config(function($routeProvider){
 });
 
 //################################
-// FACTORIES
+// FACTORIES AND CUSTOM DIRECTIVES
 //################################
+// RESTful demo app - Customer API consumption
 portfolioApp.factory("CustomersAPI", function($resource) {
   return $resource("/customers/:id", {},
     {
@@ -36,6 +37,23 @@ portfolioApp.factory("CustomersAPI", function($resource) {
     }
   );
 });
+// RESTful demo app - Customer Cards
+portfolioApp.directive('customerCardBrief', function(){
+  return {
+    templateUrl: '/assets/templates/directives/customerCardBrief.html',
+    scope: {
+      customers: "="
+    }
+  }
+});
+portfolioApp.directive('customerCardFull', function(){
+  return {
+    templateUrl: '/assets/templates/directives/customerCardFull.html',
+    scope: {
+      customer: "="
+    }
+  }
+});
 
 //################################
 // CONTROLLERS
@@ -43,7 +61,7 @@ portfolioApp.factory("CustomersAPI", function($resource) {
 portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'CustomersAPI', function($scope, $resource, CustomersAPI){
 
   $scope.customers = CustomersAPI.index();
+  $scope.currentCustomer = $scope.customers[0];
   console.log($scope.customers);
-
 }]);
 

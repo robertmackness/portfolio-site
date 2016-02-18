@@ -87,3 +87,17 @@ Demo Apps Styling
 .demo-app-description{
   font-family: Helvetica;
 }
+.demo-app-restful-searchbar{
+  width: 100%;
+  color: #18bc9c;
+}
+
+customer-card-brief{
+  font-family: Helvetica;
+  color: black;
+}
+
+customer-card-full{
+  font-family: Helvetica;
+  color: black
+}

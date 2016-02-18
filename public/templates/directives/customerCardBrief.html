@@ -1,10 +1,11 @@
-<div>
-  <ul class="list-group">
-    <li class="list-group-item"  ng-repeat="customer in customers">
-        <div class="heading"><strong>Name: </strong>{{customer.first_name}} {{customer.last_name}}</div>
+<div class="customer-card-brief">
+  <divclass="list-group">
+    <button type="button" class="list-group-item"  ng-repeat="customer in customers">
+        <div class="heading"><strong>{{customer.first_name}} {{customer.last_name}}</strong></div>
         <div class="body">
-          <strong>Company:</strong> {{customer.company}}
+          {{customer.company}} <br />
+          {{customer.telephone}}
         </div>
-    </li>
-  </ul>
+    </button>
+  </div>
 </div>

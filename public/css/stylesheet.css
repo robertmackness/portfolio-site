@@ -92,12 +92,22 @@ Demo Apps Styling
   color: #18bc9c;
 }
 
-customer-card-brief{
+.customer-card-brief{
   font-family: Helvetica;
   color: black;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 customer-card-full{
   font-family: Helvetica;
   color: black
+}
+
+
+
+.demo-app-restful-container{
+
+
 }

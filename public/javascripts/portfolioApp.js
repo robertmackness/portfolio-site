@@ -27,15 +27,7 @@ portfolioApp.config(function($routeProvider){
 //################################
 // RESTful demo app - Customer API consumption
 portfolioApp.factory("CustomersAPI", function($resource) {
-  return $resource("/customers/:id", {},
-    {
-      'create':  { method: 'POST' },
-      'index':   { method: 'GET', isArray: true },
-      'show':    { method: 'GET', isArray: false },
-      'update':  { method: 'PUT' },
-      'destroy': { method: 'DELETE' }
-    }
-  );
+  return $resource("/customers/:id", {id: "@id"});
 });
 // RESTful demo app - Customer Cards
 portfolioApp.directive('customerCardBrief', function(){
@@ -60,8 +52,11 @@ portfolioApp.directive('customerCardFull', function(){
 //################################
 portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'CustomersAPI', function($scope, $resource, CustomersAPI){
 
-  $scope.customers = CustomersAPI.index();
-  $scope.currentCustomer = $scope.customers[0];
-  console.log($scope.customers);
+  $scope.customers = CustomersAPI.query(function(){
+    var currentCustomerId = $scope.customers[0]._id;
+    console.log(typeof currentCustomerId, currentCustomerId);
+    $scope.currentCustomer = CustomersAPI.get( {id: currentCustomerId} );
+  });
+
 }]);
 

@@ -18,7 +18,7 @@ router.get('', function(req, res, next) {
 
 // GET 1 by ID
 router.get('/:id', function(req, res, next){
-  customer.find({_id: req.params.id}, function(err, customer){
+  customer.findOne({_id: req.params.id}, function(err, customer){
     if(err) throw err;
     res.json(customer);
     res.end();

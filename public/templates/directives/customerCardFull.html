@@ -1,9 +1,16 @@
-<div class="panel panel-default">
+<div class="panel panel-default customer-card-full">
   <div class="panel-heading">
     <h3 class="panel-title">{{customer.first_name}} {{customer.last_name}}</h3>
   </div>
   <div class="panel-body">
-    Panel content
+    <strong>Job Title | </strong>{{customer.job_title}} <br />
+    <strong>Company | </strong>{{customer.company}} <br />
+    <strong>Telephone | </strong>{{customer.telephone}} <br />
+    <strong>Email |  </strong>{{customer.email}} <br />
+    <strong>Postal Address | </strong>
+    {{customer.street + ' | '}}
+    {{customer.city + ' | '}} 
+    {{customer.country}}
   </div>
 </div>
 

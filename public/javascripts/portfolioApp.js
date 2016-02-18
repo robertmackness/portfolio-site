@@ -27,7 +27,7 @@ portfolioApp.config(function($routeProvider){
 //################################
 // RESTful demo app - Customer API consumption
 portfolioApp.factory("CustomersAPI", function($resource) {
-  return $resource("/customers/:id", {id: "@id"});
+  return $resource("/customers/:id", {id: "@id", searchString: ""});
 });
 // RESTful demo app - Customer Cards
 portfolioApp.directive('customerCardBrief', function(){
@@ -51,12 +51,21 @@ portfolioApp.directive('customerCardFull', function(){
 // CONTROLLERS
 //################################
 portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'CustomersAPI', function($scope, $resource, CustomersAPI){
-
+  //INITIAL SETUP
+  $scope.searchString = "";
   $scope.customers = CustomersAPI.query(function(){
-    var currentCustomerId = $scope.customers[0]._id;
-    console.log(typeof currentCustomerId, currentCustomerId);
-    $scope.currentCustomer = CustomersAPI.get( {id: currentCustomerId} );
+    $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
   });
-
+  // TYPEAHEAD SEARCH
+  // Reduce total number of API calls by using setTimeout and clearTimeout
+  var timeoutID;
+  $scope.$watch('searchString', function(){
+      if(timeoutID) clearTimeout(timeoutID);
+      timeoutID = setTimeout(function(){
+        $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
+          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+        })    
+      }, 500);
+  })
 }]);
 

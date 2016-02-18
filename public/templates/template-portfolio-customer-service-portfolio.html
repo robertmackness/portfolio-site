@@ -2,14 +2,13 @@
   
   <div class="container">
       <h1 class="demo-app-title">RESTul API Demo: An Internal Sales Customer Information Portal (ISCIP)</h1>
-      <p class="demo-app-description"><u>Node</u> and <u>Express</u> were used to create a <u>RESTful API</u> connected to a <u>MongoDB</u> test database hosted with MongoLab. The API is being consumed by <u>Angular</u> ngResource and can be directly manipulated using Create, Read, Update, Delete <u>(CRUD)</u> and Index methods.</p>
-      <p class="demo-app-description">Note the dynamic updating of the DOM with the <u>custom typeahead search</u>.</p>
+      <p class="demo-app-description"><u>Node</u> and <u>Express</u> were used to create a <u>RESTful API</u> connected to a <u>MongoDB</u> test database hosted with MongoLab. The API is being consumed by <u>Angular</u> to produce the typeahead-search results and business cards.</p>
   </div>
 
 
   <div class="container demo-app-restful">
   <h3>Welcome to ISCIP</h3>
-  <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..."></input>
+  <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
     <div class="col-xs-6">
       <customer-card-brief customers="customers"></customer-card-brief>
     </div>

@@ -8,12 +8,27 @@ var customer = require(__dirname + '/../custom_modules/mongoose_schema_customer.
 
 // GET
 router.get('', function(req, res, next) {
-  // test - return first 100 users
-  customer.find({}, function (err, customers) {
-    if (err) throw err;
-    res.json(customers);
-    res.end();
-  });
+  if(req.query.searchString){
+    var searchRegex = new RegExp(req.query.searchString,'i');
+    customer.find({ $or: [
+                         {first_name: {$regex: searchRegex} }, 
+                         {last_name: {$regex: searchRegex} }, 
+                         {company: {$regex: searchRegex} } 
+                         ]
+                  })
+    .exec(function(err, customers){
+      if (err) console.log(err);
+      res.json(customers);
+      res.end();
+    });
+  }else{
+    customer.find({}).limit(10).exec(function(err, customers){
+      if (err) console.log(err);
+      res.json(customers);
+      res.end();
+    });
+  }
+
 });
 
 // GET 1 by ID

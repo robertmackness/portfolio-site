@@ -90,9 +90,11 @@ Demo Apps Styling
 .demo-app-restful-searchbar{
   width: 100%;
   color: #18bc9c;
+  font-size: 18px;
 }
 
 .customer-card-brief{
+  margin-top: 15px;
   font-family: Helvetica;
   color: black;
   height: 300px;
@@ -100,14 +102,31 @@ Demo Apps Styling
   overflow-x: hidden;
 }
 
-customer-card-full{
+.customer-card-full{
+  margin-top: 15px;
   font-family: Helvetica;
-  color: black
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #18bc9c;
+}
+
+.customer-card-full .panel-heading {
+  background-color: #2c3e50;
+}
+
+.customer-card-full .panel-title{
+  color:white;
+  font-family: Lobster;
+  font-size: 40px;
+  text-align: center;
+}
+
+.customer-card-full .panel-body strong{
+  font-size: 15px;
 }
 
 
-
 .demo-app-restful-container{
-
 
 }

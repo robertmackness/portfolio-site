@@ -77,3 +77,13 @@ Template-Main Styling
 .mongodb-logo{
   border-radius: 50%;
 }
+
+/*###########################
+Demo Apps Styling
+##########################*/ 
+.demo-app-title{
+
+}
+.demo-app-description{
+  font-family: Helvetica;
+}

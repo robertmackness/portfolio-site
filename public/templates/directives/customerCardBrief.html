@@ -1,11 +1,7 @@
-<div class="customer-card-brief">
-  <divclass="list-group">
-    <button type="button" class="list-group-item"  ng-repeat="customer in customers">
-        <div class="heading"><strong>{{customer.first_name}} {{customer.last_name}}</strong></div>
-        <div class="body">
-          {{customer.company}} <br />
-          {{customer.telephone}}
-        </div>
-    </button>
+<button type="button" class="list-group-item">
+  <div class="heading"><strong>{{$parent.customer.first_name}} {{$parent.customer.last_name}}</strong></div>
+  <div class="body">
+    {{$parent.customer.company}} <br />
+    {{$parent.customer.telephone}}
   </div>
-</div>
+</button>

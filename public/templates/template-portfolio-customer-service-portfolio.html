@@ -7,11 +7,17 @@
 
 
   <div class="container demo-app-restful">
-  <h3>Welcome to ISCIP</h3>
+  <h3>Welcome to (ISCIP)</h3>
   <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
+   
     <div class="col-xs-6">
-      <customer-card-brief customers="customers"></customer-card-brief>
+      <div class="customer-card-brief">
+        <div class="list-group">
+          <customer-card-brief ng-repeat="customer in customers" ng-click="setCurrentCustomerId(customer._id)"></customer-card-brief>
+        </div>
+      </div>
     </div>
+
     <div class="col-xs-6">
       <customer-card-full customer="currentCustomer"></customer-card-full>
     </div>

@@ -34,7 +34,8 @@ portfolioApp.directive('customerCardBrief', function(){
   return {
     templateUrl: '/assets/templates/directives/customerCardBrief.html',
     scope: {
-      customers: "="
+      customers: "=",
+
     }
   }
 });
@@ -42,7 +43,7 @@ portfolioApp.directive('customerCardFull', function(){
   return {
     templateUrl: '/assets/templates/directives/customerCardFull.html',
     scope: {
-      customer: "="
+      customer: "=",      
     }
   }
 });
@@ -56,6 +57,13 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   $scope.customers = CustomersAPI.query(function(){
     $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
   });
+
+  // onClick Methods to set Current Customer ID
+  $scope.setCurrentCustomerId = function(id){
+    console.log("setCurrentCustomerId triggered");
+    $scope.currentCustomer = CustomersAPI.get( {id: id} );
+  }
+
   // TYPEAHEAD SEARCH
   // Reduce total number of API calls by using setTimeout and clearTimeout
   var timeoutID;

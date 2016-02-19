@@ -7,6 +7,9 @@ var app = express();
 // user body parser middleware for REST JSON data in req.body
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+// use compression to gzip payloads sent to browsers
+var compression = require('compression');
+app.use(compression());
 
 //################################
 // Setup App Port and View Engine

@@ -51,7 +51,9 @@ portfolioApp.directive('customerModalDialogue', function(){
   return {
     templateUrl: '/assets/templates/directives/customerCardModal.html',
     scope: {
-      showModal: '='
+      showModal: '=',
+      currentCustomer: '=',
+      submitChanges: '&'
     },
     link: function(scope, element, attrs){
       scope.hideModal = function() {
@@ -83,14 +85,21 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          if($scope.customers[0])  $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
         })    
       }, 500);
   });
-  // MODAL DIALOGUE TOGGLE
+  // MODAL DIALOGUE
+  // Toggle
   $scope.showModal = false;
   $scope.toggleModal = function() {
     $scope.showModal = !$scope.showModal;
   };
+  // Submit Changes
+  $scope.submitChanges = function(id, customerObject){
+    console.log("Submitted changes: ");
+    console.log(id);
+    console.log(customerObject);
+  }
 }]);
 

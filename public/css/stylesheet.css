@@ -126,6 +126,7 @@ Demo Apps Styling
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #18bc9c;
+  background-image: url('/assets/images/customerCardSubmitBackground.png');
 }
 
 .customer-card-full .panel-heading {
@@ -138,11 +139,9 @@ Demo Apps Styling
   font-size: 40px;
   text-align: center;
 }
-
-.customer-card-full .panel-body strong{
-  font-size: 15px;
+.customer-card-full .panel-body .card .list-group-item{
+  color: black;
 }
-
 
 .demo-app-restful-container{
 
@@ -152,8 +151,8 @@ Demo Apps Styling
 customer-modal-dialogue {
   position: absolute;
   top: 0;
-  left: 0;
-  width:100%;
+  right: 25%;
+  width:150%;
   height:100%;
 }
 .modal-container .overlay {
@@ -164,28 +163,32 @@ customer-modal-dialogue {
   width:100%;
   height:100%;
   background-color: #2c3e50;
-  opacity: 0.9;
+  opacity: 0.8;
+  border-radius: 1%;   
 }
-.modal-container .dialog {
-  z-index:100;
+.modal-container .dialogue {
   position: absolute;
-  width: 50%; /* Default */
-
-  /* Center the dialog */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-
-  background-color: #fff;
-  box-shadow: 4px 4px 80px #000;
+  top: 10%;
+  left: 3%;
+  z-index:100;
+  width: 94%; 
+  height: 80%;
+  background-color: #18bc9c;
+  background-image: url('/assets/images/customerCardSubmitBackground.png');
+  border-radius: 1%;
 }
 .modal-container .dialogue .content {
-  padding:10px;
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: left;
+  color: white;
+}
+
+.modal-container .dialogue .content .input-group .input-group-addon {
+  min-width:100px;
   text-align: left;
 }
-.modal-container .dialogue .quit {
+.modal-container .quit {
   position: absolute;
   top: 3px;
   right: 5px;

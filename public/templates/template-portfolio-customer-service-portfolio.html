@@ -3,30 +3,35 @@
   <div class="container">
       <h1 class="demo-app-title">RESTful API Demo: An Internal Sales Customer Information Portal (ISCIP)</h1>
       <p class="demo-app-description"><u>Node</u> and <u>Express</u> were used to create a <u>RESTful API</u> connected to a <u>MongoDB</u> test database hosted with MongoLab. The API is being consumed by <u>Angular</u> to produce the typeahead-search results and business cards.</p>
-  </div>
+  </div><!--/container-->
 
 
   <div class="container demo-app-restful-cards">
-  <h3>Welcome to (ISCIP)</h3>
-  <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
-   
+
+    <h3>Welcome to (ISCIP)</h3>
+    <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
+     
     <div class="col-xs-6 card-column">
       <div class="customer-card-brief">
         <div class="list-group">
           <customer-card-brief ng-repeat="customer in customers" ng-click="setCurrentCustomerId(customer._id)"></customer-card-brief>
-        </div>
-      </div>
-    </div>
+        </div><!--/list-group-->
+      </div><!--/customer-card-brief-->
+    </div><!--/col-xs-6 card-column-->
 
     <div class="col-xs-6 card-column">
-      <customer-modal-dialogue show-modal="showModal"></customer-modal-dialogue><!-- Overlay Modal Testing -->
+      <customer-modal-dialogue show-modal="showModal" 
+                               current-customer="currentCustomer"
+                               submit-changes="submitChanges(id, customerObject)" 
+                               ng-show="showModal"
+                               ng-hide="!showModal">
+      </customer-modal-dialogue><!-- Overlay Modal -->
       <customer-card-full customer="currentCustomer"></customer-card-full>
-    </div>
+    </div><!--/col-xs-6 card-column-->
 
-  </div>
-
+  </div><!--/container demo-app-restful-cards-->
 
   <!-- Overlay Modal Testing -->
   <button class="btn btn-lrg" ng-click="toggleModal()">Click me!</button>
 
-</div>
+</div><!--/demo-app-restful-->

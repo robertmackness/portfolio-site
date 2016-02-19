@@ -1,9 +1,70 @@
 <div class='modal-container' ng-show='showModal'>
   <div class='overlay'> </div>
+  <div class='quit' ng-click='hideModal()'>Close</div>
   <div class='dialogue'>
-    <div class='quit' ng-click='hideModal()'>Close</div>
     <div class='content'>
-      
-    </div>
+      <form class="form" role="form">
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">First Name</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.first_name}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Last Name</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.last_name}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Job Title</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.job_title}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Company</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.company}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Telephone</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.telephone}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Email</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.email}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Street</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.street}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">City</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.city}}" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Country</span>
+            <input type="text" class="form-control" placeholder="{{currentCustomer.country}}" aria-describedby="basic-addon1">
+          </div>
+        </div><!--/form-group-->
+      </form><!--/form-->
+    </div><!--/content-->
   </div><!--/dialogue-->
 </div><!--/modal-container-->
+
+
+<!-- 
+ng-click="submitChanges({id: currentCustomer._id, customerObject: currentCustomer})"
+-->
+
+<!--
+Example customer object:
+{
+  _id: "56c5104bf52a18f31ae5c4a4"
+  city: "Nizhniye Vyazovyye"
+  company: "Tanoodle"
+  country: "Russia"
+  email: "sfowler0@wsj.com"
+  first_name: "Steven"
+  job_title: "Computer Systems Analyst II"
+  last_name: "Fowler"
+  street: "5240 3rd Circle"
+  telephone: "7-(789)797-0263"
+}
+-->

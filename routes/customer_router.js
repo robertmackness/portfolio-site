@@ -45,7 +45,7 @@ router.post('/', function(req, res, next){
 });
 // UPDATE 1 by ID
 router.put('/:id', function(req, res, next){
-  
+  console.log(req);
 });
 // DESTROY 1 by ID
 router.delete('/:id', function(req, res, next){

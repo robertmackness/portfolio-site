@@ -24,7 +24,8 @@
       <!-- Overlay Modal -->    
       <customer-modal-dialogue-edit show-modal-edit="showModalEdit" 
                                current-customer="currentCustomer" 
-                               submit-changes="submitChanges(id, customerObject)" 
+                               submit-changes="submitChanges(customerObject)" 
+                               hide-modal="hideModal()" 
                                ng-show="showModalEdit" 
                                ng-hide="!showModalEdit">
       </customer-modal-dialogue-edit>

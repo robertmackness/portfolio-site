@@ -45,7 +45,12 @@ router.post('/', function(req, res, next){
 });
 // UPDATE 1 by ID
 router.put('/:id', function(req, res, next){
-  console.log(req);
+  // a full customer object is sent in JSON in the req.body.customerObject{}
+  customer.update({_id: req.body.customerObject._id}, req.body.customerObject)
+    .exec(function(err, customers){
+      if (err) console.log(err);
+    });
+  res.end();
 });
 // DESTROY 1 by ID
 router.delete('/:id', function(req, res, next){

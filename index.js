@@ -4,6 +4,9 @@
 // require Express (returns function to build server) then execute to create app
 var express = require('express');
 var app = express();
+// user body parser middleware for REST JSON data in req.body
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 //################################
 // Setup App Port and View Engine

@@ -27,7 +27,9 @@ portfolioApp.config(function($routeProvider){
 //################################
 // RESTful demo app - Customer API consumption
 portfolioApp.factory("CustomersAPI", function($resource) {
-  return $resource("/customers/:id", {id: "@id", searchString: ""});
+  return $resource("/customers/:id", {id: "@id"}, {
+      edit:  {method:'PUT', params: {id: "id"}},
+  });
 });
 // RESTful demo app - Customer Cards
 portfolioApp.directive('customerCardBrief', function(){
@@ -56,14 +58,10 @@ portfolioApp.directive('customerModalDialogueEdit', function(){
       showModalEdit: '=',
       currentCustomer: '=',
       submitChanges: '&',
-    },
-    link: function(scope, element, attrs){
-      scope.hideModal = function() {
-        scope.showModalEdit = false;
-      };
+      hideModal: '&'
+      }
     }
-  }
-})
+});
 
 //################################
 // CONTROLLERS
@@ -95,13 +93,22 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   // Customer Edit - Toggle
   $scope.showModalEdit = false;
   $scope.toggleModalEdit = function() {
-    $scope.showModalEdit = !$scope.showModalEdit;
+    $scope.showModalEdit = true;
   };
+  $scope.hideModal = function() {
+    $scope.showModalEdit = false;
+    $scope.currentCustomer = CustomersAPI.get( {id: $scope.currentCustomer._id});
+  }
   // Customer Edit - Submit Changes
-  $scope.submitChanges = function(id, customerObject){
-    console.log("Submitted changes: ");
-    console.log(id);
-    console.log(customerObject);
+  $scope.submitChanges = function(customerObject){
+    CustomersAPI.edit({customerObject}, function(){
+      console.log("Submitted changes: ");
+      console.log(customerObject);
+        $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
+         $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+         $scope.showModalEdit = false;
+        });
+    });
   }
   // Customer Delete - Confirm
   $scope.showModalDelete = false;

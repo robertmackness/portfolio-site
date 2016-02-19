@@ -21,20 +21,27 @@
 
 
     <div class="col-xs-6 card-column">
-      <!-- Overlay Modal -->    
+      <!-- Overlay Modal -Edit -->    
       <customer-modal-dialogue-edit show-modal-edit="showModalEdit" 
                                current-customer="currentCustomer" 
                                submit-changes="submitChanges(customerObject)" 
-                               hide-modal="hideModal()" 
+                               hide-modal="hideModalEdit()" 
                                ng-show="showModalEdit" 
                                ng-hide="!showModalEdit">
       </customer-modal-dialogue-edit>
-      <!-- /Overlay Modal -->
+      <!-- /Overlay Modal -Edit -->
+      <customer-modal-dialogue-delete 
+                                      current-customer="currentCustomer"
+                                      delete-current-customer="deleteCurrentCustomer()" 
+                                      hide-modal="hideModalDelete()" 
+                                      ng-show="showModalDelete" 
+                                      ng-hide="!showModalDelete">
+      </customer-modal-dialogue-delete>
 
       <!-- Customer-Card-Full -->
       <customer-card-full customer="currentCustomer"
                           toggle-modal-edit="toggleModalEdit()"
-                          delete-current-customer="deleteCurrentCustomer()">
+                          toggle-modal-delete="toggleModalDelete()">
       </customer-card-full>
       <!-- /Customer-Card-Full -->
 

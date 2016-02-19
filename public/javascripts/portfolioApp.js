@@ -35,7 +35,6 @@ portfolioApp.directive('customerCardBrief', function(){
     templateUrl: '/assets/templates/directives/customerCardBrief.html',
     scope: {
       customers: "=",
-
     }
   }
 });
@@ -47,6 +46,20 @@ portfolioApp.directive('customerCardFull', function(){
     }
   }
 });
+// RESTful demo app - Modal Dialogue for Editing Customers
+portfolioApp.directive('customerModalDialogue', function(){
+  return {
+    templateUrl: '/assets/templates/directives/customerCardModal.html',
+    scope: {
+      showModal: '='
+    },
+    link: function(scope, element, attrs){
+      scope.hideModal = function() {
+        scope.showModal = false;
+      };
+    }
+  }
+})
 
 //################################
 // CONTROLLERS
@@ -55,15 +68,14 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   //INITIAL SETUP
   $scope.searchString = "";
   $scope.customers = CustomersAPI.query(function(){
-    $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
+    if($scope.customers[0]) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
   });
 
-  // onClick Methods to set Current Customer ID
+  // SET CURRENT CUSTOMER ID
   $scope.setCurrentCustomerId = function(id){
     console.log("setCurrentCustomerId triggered");
     $scope.currentCustomer = CustomersAPI.get( {id: id} );
   }
-
   // TYPEAHEAD SEARCH
   // Reduce total number of API calls by using setTimeout and clearTimeout
   var timeoutID;
@@ -71,9 +83,14 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          if($scope.customers[0])  $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
         })    
       }, 500);
-  })
+  });
+  // MODAL DIALOGUE TOGGLE
+  $scope.showModal = false;
+  $scope.toggleModal = function() {
+    $scope.showModal = !$scope.showModal;
+  };
 }]);
 

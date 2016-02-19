@@ -87,18 +87,24 @@ Demo Apps Styling
 .demo-app-description{
   font-family: Helvetica;
 }
+
+/** Demo App: Restful API **/
 .demo-app-restful-searchbar{
   width: 100%;
   color: #18bc9c;
   font-size: 18px;
 }
 
+.demo-app-restful .demo-app-restful-cards .card-column {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .customer-card-brief{
   margin-top: 15px;
   font-family: Helvetica;
   color: black;
-  height: 300px;
-  overflow-y: scroll;
+  height: 400px;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .customer-card-brief .list-group .list-group-item{
@@ -116,8 +122,8 @@ Demo Apps Styling
 .customer-card-full{
   margin-top: 15px;
   font-family: Helvetica;
-  height: 300px;
-  overflow-y: scroll;
+  height: 400px;
+  overflow-y: auto;
   overflow-x: hidden;
   background-color: #18bc9c;
 }
@@ -140,4 +146,53 @@ Demo Apps Styling
 
 .demo-app-restful-container{
 
+}
+
+/** Demo App: Restful API - MODAL **/
+customer-modal-dialogue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+}
+.modal-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:99;
+  width:100%;
+  height:100%;
+  background-color: #2c3e50;
+  opacity: 0.9;
+}
+.modal-container .dialog {
+  z-index:100;
+  position: absolute;
+  width: 50%; /* Default */
+
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+}
+.modal-container .dialogue .content {
+  padding:10px;
+  text-align: left;
+}
+.modal-container .dialogue .quit {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  z-index:100;
+  font-family: Lobster;
+  color: white;
 }

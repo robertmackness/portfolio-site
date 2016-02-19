@@ -19,19 +19,24 @@
       </div><!--/customer-card-brief-->
     </div><!--/col-xs-6 card-column-->
 
+
     <div class="col-xs-6 card-column">
+      <!-- Overlay Modal -->    
       <customer-modal-dialogue show-modal="showModal" 
                                current-customer="currentCustomer"
                                submit-changes="submitChanges(id, customerObject)" 
                                ng-show="showModal"
                                ng-hide="!showModal">
-      </customer-modal-dialogue><!-- Overlay Modal -->
-      <customer-card-full customer="currentCustomer"></customer-card-full>
+      </customer-modal-dialogue>
+      <!-- /Overlay Modal -->
+
+      <!-- Customer-Card-Full -->
+      <customer-card-full customer="currentCustomer"
+                          toggle-modal-edit="toggleModalEdit()"
+                          delete-current-customer="deleteCurrentCustomer()">
+      </customer-card-full>
+      <!-- /Customer-Card-Full -->
+
     </div><!--/col-xs-6 card-column-->
-
   </div><!--/container demo-app-restful-cards-->
-
-  <!-- Overlay Modal Testing -->
-  <button class="btn btn-lrg" ng-click="toggleModal()">Click me!</button>
-
 </div><!--/demo-app-restful-->

@@ -14,6 +14,13 @@
         <li class="list-group-item">{{customer.email}}</li>
         <li class="list-group-item">{{customer.street + ' ' + customer.city + ' ' + customer.country}} </li>
       </ul>
+      <button type="button" class="btn btn-default" ng-click="toggleModalEdit()">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Edit
+      </button>
+
+      <button type="button" class="btn btn-default" ng-click="deleteCurrentCustomer()">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+      </button>
     </div>
   </div>
 </div>

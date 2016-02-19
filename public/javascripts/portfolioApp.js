@@ -42,7 +42,9 @@ portfolioApp.directive('customerCardFull', function(){
   return {
     templateUrl: '/assets/templates/directives/customerCardFull.html',
     scope: {
-      customer: "=",      
+      customer: "=",
+      toggleModalEdit: '&',
+      deleteCurrentCustomer: '&'      
     }
   }
 });
@@ -53,7 +55,7 @@ portfolioApp.directive('customerModalDialogue', function(){
     scope: {
       showModal: '=',
       currentCustomer: '=',
-      submitChanges: '&'
+      submitChanges: '&',
     },
     link: function(scope, element, attrs){
       scope.hideModal = function() {
@@ -92,7 +94,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   // MODAL DIALOGUE
   // Toggle
   $scope.showModal = false;
-  $scope.toggleModal = function() {
+  $scope.toggleModalEdit = function() {
     $scope.showModal = !$scope.showModal;
   };
   // Submit Changes
@@ -100,6 +102,11 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     console.log("Submitted changes: ");
     console.log(id);
     console.log(customerObject);
+  }
+  // Delete Current Customer
+  $scope.deleteCurrentCustomer = function(){
+    console.log("Deleting current customer...");
+    console.log($scope.currentCustomer);
   }
 }]);
 

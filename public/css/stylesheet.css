@@ -148,7 +148,7 @@ Demo Apps Styling
 }
 
 /** Demo App: Restful API - MODAL **/
-customer-modal-dialogue {
+customer-modal-dialogue-edit {
   position: absolute;
   top: 0;
   right: 25%;
@@ -188,6 +188,11 @@ customer-modal-dialogue {
   min-width:100px;
   text-align: left;
 }
+.modal-container .dialogue .content .form button{
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .modal-container .quit {
   position: absolute;
   top: 3px;

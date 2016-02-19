@@ -49,17 +49,17 @@ portfolioApp.directive('customerCardFull', function(){
   }
 });
 // RESTful demo app - Modal Dialogue for Editing Customers
-portfolioApp.directive('customerModalDialogue', function(){
+portfolioApp.directive('customerModalDialogueEdit', function(){
   return {
-    templateUrl: '/assets/templates/directives/customerCardModal.html',
+    templateUrl: '/assets/templates/directives/customerCardModalEdit.html',
     scope: {
-      showModal: '=',
+      showModalEdit: '=',
       currentCustomer: '=',
       submitChanges: '&',
     },
     link: function(scope, element, attrs){
       scope.hideModal = function() {
-        scope.showModal = false;
+        scope.showModalEdit = false;
       };
     }
   }
@@ -91,19 +91,24 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
         })    
       }, 500);
   });
-  // MODAL DIALOGUE
-  // Toggle
-  $scope.showModal = false;
+  // MODAL DIALOGUES
+  // Customer Edit - Toggle
+  $scope.showModalEdit = false;
   $scope.toggleModalEdit = function() {
-    $scope.showModal = !$scope.showModal;
+    $scope.showModalEdit = !$scope.showModalEdit;
   };
-  // Submit Changes
+  // Customer Edit - Submit Changes
   $scope.submitChanges = function(id, customerObject){
     console.log("Submitted changes: ");
     console.log(id);
     console.log(customerObject);
   }
-  // Delete Current Customer
+  // Customer Delete - Confirm
+  $scope.showModalDelete = false;
+  $scope.toggleModalDelete = function() {
+    $scope.showModalDelete = !$scope.showModalDelete;
+  };
+  // Customer Delete - Confirmed 
   $scope.deleteCurrentCustomer = function(){
     console.log("Deleting current customer...");
     console.log($scope.currentCustomer);

@@ -94,12 +94,11 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   //INITIAL SETUP
   $scope.searchString = "";
   $scope.customers = CustomersAPI.query(function(){
-    if($scope.customers[0]) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
+    if($scope.customers[0]._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
   });
 
   // SET CURRENT CUSTOMER ID
   $scope.setCurrentCustomerId = function(id){
-    console.log("setCurrentCustomerId triggered");
     $scope.currentCustomer = CustomersAPI.get( {id: id} );
   }
   // TYPEAHEAD SEARCH
@@ -109,7 +108,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          if($scope.customers[0] && !$scope.currentCustomer._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          if($scope.customers[0]._id && !$scope.currentCustomer._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
         })    
       }, 500);
   });
@@ -141,7 +140,6 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.showModalCreate = false;
   }
   $scope.submitNewCustomer = function(customerObject){
-    console.log(customerObject);
     CustomersAPI.save({customerObject: customerObject}, function(returnedCustomer){
       $scope.showModalCreate = false;
       $scope.currentCustomer = CustomersAPI.get( {id: returnedCustomer._id});
@@ -160,7 +158,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   $scope.deleteCurrentCustomer = function(){
     $scope.showModalDelete = false;
     CustomersAPI.delete({id: $scope.currentCustomer._id}, function(){
-      if($scope.customers[0]) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+      if($scope.customers[0]._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
     });
   }
 }]);

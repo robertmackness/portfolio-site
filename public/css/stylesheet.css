@@ -155,24 +155,24 @@ margin-top: 10px;
 /** Demo App: Restful API - MODAL **/
 customer-modal-dialogue-edit {
   position: absolute;
-  top: 0;
+  top: -10%;
   right: 25%;
   width:150%;
-  height:100%;
+  height:120%;
 }
 customer-modal-dialogue-delete {
   position: absolute;
-  top: 0;
+  top: -10%;
   right: 25%;
   width:150%;
-  height:100%;
+  height:120%;
 }
 customer-modal-dialogue-create {
   position: absolute;
-  top: 0;
+  top: -10%;
   right: 25%;
   width:150%;
-  height:100%;
+  height:120%;
 }
 .modal-container .overlay {
   position: absolute;
@@ -227,6 +227,12 @@ customer-modal-dialogue-create {
 }
 
 .modal-warning{
-  color:yellow;
+  color: #E4004F;
+
+  font-family: 'Passion One';
+}
+
+.modal-info{
+  color:white;
   font-family: 'Passion One';
 }

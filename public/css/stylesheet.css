@@ -89,15 +89,20 @@ Demo Apps Styling
 }
 
 /** Demo App: Restful API **/
-.demo-app-restful-searchbar{
+.demo-app-restful .demo-app-restful-cards .demo-app-restful-searchbar{
   width: 100%;
   color: #18bc9c;
   font-size: 18px;
 }
-
+.demo-app-restful .demo-app-restful-cards .searchbar-glyphicon{
+  background-color: #FFF;
+}
 .demo-app-restful .demo-app-restful-cards .card-column {
   padding-left: 0px;
   padding-right: 0px;
+}
+.demo-app-restful .demo-app-restful-cards .card-column .create-user-btn{
+margin-top: 10px;
 }
 .customer-card-brief{
   margin-top: 15px;
@@ -156,6 +161,13 @@ customer-modal-dialogue-edit {
   height:100%;
 }
 customer-modal-dialogue-delete {
+  position: absolute;
+  top: 0;
+  right: 25%;
+  width:150%;
+  height:100%;
+}
+customer-modal-dialogue-create {
   position: absolute;
   top: 0;
   right: 25%;

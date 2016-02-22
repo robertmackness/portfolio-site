@@ -74,6 +74,18 @@ portfolioApp.directive('customerModalDialogueDelete', function(){
       }
     }
 });
+// RESTful demo app - Modal Dialogue for Create Customers
+portfolioApp.directive('customerModalDialogueCreate', function(){
+  return {
+    templateUrl: '/assets/templates/directives/customerCardModalCreate.html',
+    scope: {
+      newCustomerObject: '=',
+      showModalCreate: '=',
+      submitNewCustomer: '&',
+      hideModal: '&'
+      }
+    }
+});
 
 //################################
 // CONTROLLERS
@@ -97,7 +109,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          if($scope.customers[0] && !$scope.currentCustomer._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
         })    
       }, 500);
   });
@@ -112,16 +124,15 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.currentCustomer = CustomersAPI.get( {id: $scope.currentCustomer._id});
   }
   $scope.submitChanges = function(customerObject){
-    CustomersAPI.edit({customerObject}, function(){
-      console.log("Submitted changes: ");
-      console.log(customerObject);
+    CustomersAPI.edit({customerObject: customerObject}, function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-         $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
-         $scope.showModalEdit = false;
+          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          $scope.showModalEdit = false;
         });
     });
   }
-  // Customer Create - Toggle
+  // Customer Create
+  $scope.newCustomer = {};
   $scope.showModalCreate = false;
   $scope.toggleModalCreate = function() {
     $scope.showModalCreate = true;
@@ -129,7 +140,16 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   $scope.hideModalCreate = function() {
     $scope.showModalCreate = false;
   }
-  // Customer Delete - Confirm
+  $scope.submitNewCustomer = function(customerObject){
+    console.log(customerObject);
+    CustomersAPI.save({customerObject: customerObject}, function(returnedCustomer){
+      $scope.showModalCreate = false;
+      $scope.currentCustomer = CustomersAPI.get( {id: returnedCustomer._id});
+      $scope.searchString = "";
+    });
+
+  }
+  // Customer Delete
   $scope.showModalDelete = false;
   $scope.toggleModalDelete = function() {
     $scope.showModalDelete = !$scope.showModalDelete;
@@ -138,7 +158,10 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.showModalDelete = false;
   };
   $scope.deleteCurrentCustomer = function(){
-    CustomersAPI.delete({id: $scope.currentCustomer._id});
+    $scope.showModalDelete = false;
+    CustomersAPI.delete({id: $scope.currentCustomer._id}, function(){
+      if($scope.customers[0]) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+    });
   }
 }]);
 

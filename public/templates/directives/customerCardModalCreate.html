@@ -1,0 +1,72 @@
+<div class='modal-container' ng-show='showModalCreate'>
+  <div class='overlay'> </div>
+  <div class='quit' ng-click='hideModal()'>Close</div>
+  <div class='dialogue'>
+    <div class='content'>
+      <form class="form" role="form">
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">First Name</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.first_name">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Last Name</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.last_name" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Job Title</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.job_title" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Company</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.company" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Telephone</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1"  ng-model="newCustomerObject.telephone" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Email</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.email" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Street</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.street" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">City</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.city" >
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Country</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.country" >
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary"
+                    ng-click="submitNewCustomer({customerObject: newCustomerObject})">
+                    Submit Changes
+            </button>
+          </div>
+
+        </div><!--/form-group-->
+      </form><!--/form-->
+    </div><!--/content-->
+  </div><!--/dialogue-->
+</div><!--/modal-container-->
+
+<!--
+Example customer object:
+{
+  _id: "56c5104bf52a18f31ae5c4a4"
+  city: "Nizhniye Vyazovyye"
+  company: "Tanoodle"
+  country: "Russia"
+  email: "sfowler0@wsj.com"
+  first_name: "Steven"
+  job_title: "Computer Systems Analyst II"
+  last_name: "Fowler"
+  street: "5240 3rd Circle"
+  telephone: "7-(789)797-0263"
+}
+-->

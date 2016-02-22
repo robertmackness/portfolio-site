@@ -17,13 +17,13 @@ router.get('', function(req, res, next) {
                          ]
                   })
     .exec(function(err, customers){
-      if (err) console.log(err);
+      if (err) console.error(err);
       res.json(customers);
       res.end();
     });
   }else{
     customer.find({}).limit(10).exec(function(err, customers){
-      if (err) console.log(err);
+      if (err) console.error(err);
       res.json(customers);
       res.end();
     });
@@ -33,30 +33,35 @@ router.get('', function(req, res, next) {
 
 // GET by ID
 router.get('/:id', function(req, res, next){
-  customer.findOne({_id: req.params.id}). exec(function(err, customer){
-    if(err) throw err;
-    res.json(customer);
-    res.end();
+  customer.findById(req.params.id)
+    .exec(function(err, customer){
+      if (err) console.error(err);
+      res.json(customer);
+      res.end();
   });
-});
-// CREATE
-router.post('/', function(req, res, next){
-  
 });
 // UPDATE 1 by ID
 router.put('/:id', function(req, res, next){
   // a full customer object is sent in JSON in the req.body.customerObject{}
   customer.update({_id: req.body.customerObject._id}, req.body.customerObject)
     .exec(function(err, customers){
-      if (err) console.log(err);
+      if (err) console.error(err);
     });
   res.end();
 });
-// DESTROY 1 by ID
+// CREATE
+router.post('/', function(req, res, next){
+  var newCustomer = new customer(req.body.customerObject);
+  newCustomer.save(function (err, success) {
+    if (err) return console.error(err);
+    res.json(success);
+  });
+});
+// DELETE 1 by ID
 router.delete('/:id', function(req, res, next){
   customer.remove({_id: req.params.id}, true)  //true here is the justOne operator in Mongo
       .exec(function(err, customers){
-      if (err) console.log(err);
+      if (err) console.error(err);
     });
   console.log("Deleting: " + req.params.id);
   res.end();

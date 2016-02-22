@@ -12,7 +12,13 @@
          Welcome Message and Search bar 
          #####  --> 
     <h3>Welcome to (ISCIP)</h3>
-    <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
+    <div class="input-group">
+      <span class="input-group-addon searchbar-glyphicon">
+          <i class="glyphicon glyphicon-search"></i>
+      </span>
+      <input type="text" class="demo-app-restful-searchbar form-control" placeholder="Enter customer name or company..." ng-model="searchString">
+    </div>
+
     
     <!-- ##### 
          Business Cards - Brief
@@ -23,6 +29,11 @@
           <customer-card-brief ng-repeat="customer in customers" ng-click="setCurrentCustomerId(customer._id)"></customer-card-brief>
         </div><!--/list-group-->
       </div><!--/customer-card-brief-->
+      <div class="text-center">
+        <button type="button" class="btn btn-default create-user-btn" ng-click="toggleModalCreate()">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Create New User
+        </button>
+      </div>
     </div><!--/col-xs-6 card-column-->
 
     <!-- ##### 
@@ -48,7 +59,8 @@
       </customer-modal-dialogue-delete>
       <!-- Create -->
       <customer-modal-dialogue-create
-                      show-modal-edit="showModalCreate" 
+                      show-modal-create="showModalCreate" 
+                      new-customer-object="newCustomer"
                       submit-new-customer="submitNewCustomer(customerObject)" 
                       hide-modal="hideModalCreate()" 
                       ng-show="showModalCreate" 

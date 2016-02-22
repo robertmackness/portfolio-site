@@ -8,9 +8,15 @@
 
   <div class="container demo-app-restful-cards">
 
+    <!-- ##### 
+         Welcome Message and Search bar 
+         #####  --> 
     <h3>Welcome to (ISCIP)</h3>
     <input type="text" class="demo-app-restful-searchbar" placeholder="Enter customer name or company..." ng-model="searchString"></input>
-     
+    
+    <!-- ##### 
+         Business Cards - Brief
+         #####  -->     
     <div class="col-xs-6 card-column">
       <div class="customer-card-brief">
         <div class="list-group">
@@ -19,32 +25,44 @@
       </div><!--/customer-card-brief-->
     </div><!--/col-xs-6 card-column-->
 
-
+    <!-- ##### 
+         Modal Dialogues
+         #####  --> 
     <div class="col-xs-6 card-column">
-      <!-- Overlay Modal -Edit -->    
-      <customer-modal-dialogue-edit show-modal-edit="showModalEdit" 
-                               current-customer="currentCustomer" 
-                               submit-changes="submitChanges(customerObject)" 
-                               hide-modal="hideModalEdit()" 
-                               ng-show="showModalEdit" 
-                               ng-hide="!showModalEdit">
+      <!-- Edit -->    
+      <customer-modal-dialogue-edit 
+                      show-modal-edit="showModalEdit" 
+                      current-customer="currentCustomer" 
+                      submit-changes="submitChanges(customerObject)" 
+                      hide-modal="hideModalEdit()" 
+                      ng-show="showModalEdit" 
+                      ng-hide="!showModalEdit">
       </customer-modal-dialogue-edit>
-      <!-- /Overlay Modal -Edit -->
+      <!-- Delete -->
       <customer-modal-dialogue-delete 
-                                      current-customer="currentCustomer"
-                                      delete-current-customer="deleteCurrentCustomer()" 
-                                      hide-modal="hideModalDelete()" 
-                                      ng-show="showModalDelete" 
-                                      ng-hide="!showModalDelete">
+                      current-customer="currentCustomer" 
+                      delete-current-customer="deleteCurrentCustomer()" 
+                      hide-modal="hideModalDelete()" 
+                      ng-show="showModalDelete" 
+                      ng-hide="!showModalDelete">
       </customer-modal-dialogue-delete>
+      <!-- Create -->
+      <customer-modal-dialogue-create
+                      show-modal-edit="showModalCreate" 
+                      submit-new-customer="submitNewCustomer(customerObject)" 
+                      hide-modal="hideModalCreate()" 
+                      ng-show="showModalCreate" 
+                      ng-hide="!showModalCreate">
+      </customer-modal-dialogue-create>
 
-      <!-- Customer-Card-Full -->
+    <!-- ##### 
+         Business Cards - Full
+         #####  --> 
       <customer-card-full customer="currentCustomer"
                           toggle-modal-edit="toggleModalEdit()"
                           toggle-modal-delete="toggleModalDelete()">
-      </customer-card-full>
-      <!-- /Customer-Card-Full -->
-
+      </customer-card-full> <!-- /Customer-Card-Full -->
+      
     </div><!--/col-xs-6 card-column-->
   </div><!--/container demo-app-restful-cards-->
 </div><!--/demo-app-restful-->

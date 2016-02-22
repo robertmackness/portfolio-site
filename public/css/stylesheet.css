@@ -190,7 +190,9 @@ customer-modal-dialogue-delete {
   text-align: left;
   color: white;
 }
-
+.modal-container .dialogue .content .card{
+  color: black;
+}
 .modal-container .dialogue .content .input-group .input-group-addon {
   min-width:100px;
   text-align: left;
@@ -210,4 +212,9 @@ customer-modal-dialogue-delete {
   z-index:100;
   font-family: Lobster;
   color: white;
+}
+
+.modal-warning{
+  color:yellow;
+  font-family: 'Passion One';
 }

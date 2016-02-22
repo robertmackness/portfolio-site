@@ -18,7 +18,7 @@ portfolioApp.config(function($routeProvider){
       templateUrl: 'assets/templates/template-portfolio.html',
     })
     .when('/portfolio/customerserviceportal', {
-      templateUrl: 'assets/templates/template-portfolio-customer-service-portfolio.html',
+      templateUrl: 'assets/templates/template-portfolio-customer-service-portal.html',
     })
 });
 
@@ -102,7 +102,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       }, 500);
   });
   // MODAL DIALOGUES
-  // Customer Edit - Toggle
+  // Customer Edit
   $scope.showModalEdit = false;
   $scope.toggleModalEdit = function() {
     $scope.showModalEdit = true;
@@ -111,7 +111,6 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.showModalEdit = false;
     $scope.currentCustomer = CustomersAPI.get( {id: $scope.currentCustomer._id});
   }
-  // Customer Edit - Submit Changes
   $scope.submitChanges = function(customerObject){
     CustomersAPI.edit({customerObject}, function(){
       console.log("Submitted changes: ");
@@ -122,19 +121,24 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
         });
     });
   }
+  // Customer Create - Toggle
+  $scope.showModalCreate = false;
+  $scope.toggleModalCreate = function() {
+    $scope.showModalCreate = true;
+  };
+  $scope.hideModalCreate = function() {
+    $scope.showModalCreate = false;
+  }
   // Customer Delete - Confirm
   $scope.showModalDelete = false;
   $scope.toggleModalDelete = function() {
-    console.log("toggled modal delete");
     $scope.showModalDelete = !$scope.showModalDelete;
   };
   $scope.hideModalDelete = function() {
     $scope.showModalDelete = false;
   };
-  // Customer Delete - Confirmed 
   $scope.deleteCurrentCustomer = function(){
-    console.log("Deleting current customer...");
-    console.log($scope.currentCustomer);
+    CustomersAPI.delete({id: $scope.currentCustomer._id});
   }
 }]);
 

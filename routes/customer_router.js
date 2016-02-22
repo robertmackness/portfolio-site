@@ -6,7 +6,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var customer = require(__dirname + '/../custom_modules/mongoose_schema_customer.js');
 
-// GET
+// QUERY
 router.get('', function(req, res, next) {
   if(req.query.searchString){
     var searchRegex = new RegExp(req.query.searchString,'i');
@@ -31,15 +31,15 @@ router.get('', function(req, res, next) {
 
 });
 
-// GET 1 by ID
+// GET by ID
 router.get('/:id', function(req, res, next){
-  customer.findOne({_id: req.params.id}, function(err, customer){
+  customer.findOne({_id: req.params.id}). exec(function(err, customer){
     if(err) throw err;
     res.json(customer);
     res.end();
-  })
+  });
 });
-// CREATE 1
+// CREATE
 router.post('/', function(req, res, next){
   
 });
@@ -54,7 +54,12 @@ router.put('/:id', function(req, res, next){
 });
 // DESTROY 1 by ID
 router.delete('/:id', function(req, res, next){
-  
+  customer.remove({_id: req.params.id}, true)  //true here is the justOne operator in Mongo
+      .exec(function(err, customers){
+      if (err) console.log(err);
+    });
+  console.log("Deleting: " + req.params.id);
+  res.end();
 });
 
 //Export the router

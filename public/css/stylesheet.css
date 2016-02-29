@@ -239,3 +239,26 @@ customer-modal-dialogue-create {
   color:white;
   font-family: 'Passion One';
 }
+
+
+/*###########################
+Portfolio page Styling
+##########################*/ 
+
+.portfolio-preview-container{
+  float: none;
+  margin-top: 20px;
+}
+
+.portfolio-preview-container .preview-image{
+  max-width: 100%;
+  display: block;
+  float: none;
+  border-radius: 5px;
+  border: 4px solid #2c3e50;
+}
+
+.portfolio-preview-container .description{
+  display: block;
+  font-family: Helvetica;
+}

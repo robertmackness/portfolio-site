@@ -167,6 +167,10 @@ customer-modal-dialogue-delete {
   width:150%;
   height:120%;
 }
+customer-modal-dialogue-delete .btn{
+  background-color: red;
+  color: white;
+}
 customer-modal-dialogue-create {
   position: absolute;
   top: -10%;
@@ -227,8 +231,7 @@ customer-modal-dialogue-create {
 }
 
 .modal-warning{
-  color: #E4004F;
-
+  color:white;
   font-family: 'Passion One';
 }
 

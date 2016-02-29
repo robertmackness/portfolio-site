@@ -92,9 +92,11 @@ portfolioApp.directive('customerModalDialogueCreate', function(){
 //################################
 portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'CustomersAPI', function($scope, $resource, CustomersAPI){
   //INITIAL SETUP
+  $scope.currentCustomer = {};
+  $scope.customers = [];
   $scope.searchString = "";
   $scope.customers = CustomersAPI.query(function(){
-    if($scope.customers[0]._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id} );
+     if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }  
   });
 
   // SET CURRENT CUSTOMER ID
@@ -108,7 +110,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          if($scope.customers[0]._id && !$scope.currentCustomer._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+          if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }  
         })    
       }, 500);
   });

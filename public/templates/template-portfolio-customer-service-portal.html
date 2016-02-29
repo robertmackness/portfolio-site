@@ -23,10 +23,10 @@
     <!-- ##### 
          Business Cards - Brief
          #####  -->     
-    <div class="col-xs-6 card-column">
+    <div class="col-xs-6 card-column" ng-show="customers[0]">
       <div class="customer-card-brief">
         <div class="list-group">
-          <customer-card-brief ng-repeat="customer in customers" ng-click="setCurrentCustomerId(customer._id)"></customer-card-brief>
+          <customer-card-brief ng-repeat="customer in customers" ng-click="setCurrentCustomerId(customer)"></customer-card-brief>
         </div><!--/list-group-->
       </div><!--/customer-card-brief-->
       <div class="text-center">
@@ -39,7 +39,7 @@
     <!-- ##### 
          Modal Dialogues
          #####  --> 
-    <div class="col-xs-6 card-column">
+    <div class="col-xs-6 card-column" ng-show="customers[0]">
       <!-- Edit -->    
       <customer-modal-dialogue-edit 
                       show-modal-edit="showModalEdit" 

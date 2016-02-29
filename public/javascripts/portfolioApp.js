@@ -100,8 +100,8 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   });
 
   // SET CURRENT CUSTOMER ID
-  $scope.setCurrentCustomerId = function(id){
-    $scope.currentCustomer = CustomersAPI.get( {id: id} );
+  $scope.setCurrentCustomerId = function(customer){
+    $scope.currentCustomer = customer;
   }
   // TYPEAHEAD SEARCH
   // Reduce total number of API calls by using setTimeout and clearTimeout

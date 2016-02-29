@@ -244,7 +244,11 @@ customer-modal-dialogue-create {
 /*###########################
 Portfolio page Styling
 ##########################*/ 
-
+.portfolio-title {
+  font-family: Lobster;
+  font-size: 30px;
+  margin-top: 30px;
+}
 .portfolio-preview-container{
   float: none;
   margin-top: 20px;
@@ -254,6 +258,8 @@ Portfolio page Styling
   max-width: 100%;
   display: block;
   float: none;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 5px;
   border: 4px solid #2c3e50;
 }

@@ -7,10 +7,13 @@ body {
   background-size: cover;
 }
 
+.ng-scope{
+  padding-bottom: 25px;
+}
 /*###########################
 Nav-Bar Styling
 ##########################*/ 
-.nav {
+.nav, .navbar-default {
   background-color: #2c3e50;
 }
 
@@ -40,6 +43,15 @@ Nav-Bar Styling
 
 .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
+}
+
+.navbar-fixed-bottom{
+  font-family: Helvetica;
+  font-size: 15px;
+  height: 25px;
+  min-height: 25px;
+  text-align: right;
+  border: none;
 }
 
 /*###########################

@@ -253,6 +253,9 @@ Portfolio page Styling
   float: none;
   margin-top: 20px;
 }
+.portfolio-preview-container .header-group a{
+  color:white;
+}
 
 .portfolio-preview-container .preview-image{
   max-width: 100%;
@@ -267,4 +270,7 @@ Portfolio page Styling
 .portfolio-preview-container .description{
   display: block;
   font-family: Helvetica;
+}
+.portfolio-preview-container a{
+  color: white;
 }

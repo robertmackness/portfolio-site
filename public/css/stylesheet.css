@@ -22,7 +22,7 @@ Nav-Bar Styling
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: Lobster;
-  font-size: 300%;
+  font-size: 275%;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -89,6 +89,29 @@ Template-Main Styling
 .mongodb-logo{
   border-radius: 50%;
 }
+/*###########################
+CV/Resume Styling
+##########################*/ 
+.cv-container {
+font-family: Helvetica;
+font-size: 15px;
+}
+
+.cv-container h4 {
+  font-family: 'Passion One';
+  font-size: 25px;
+}
+
+.cv-container .icon{
+  text-align: right;
+  height: 75px;
+}
+
+.cv-container .icon img{
+  height: 100%;
+  width: auto;
+}
+
 
 /*###########################
 Demo Apps Styling

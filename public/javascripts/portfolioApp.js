@@ -17,6 +17,9 @@ portfolioApp.config(function($routeProvider){
     .when('/portfolio/customerserviceportal', {
       templateUrl: 'assets/templates/template-portfolio-customer-service-portal.html',
     })
+    .when('/blog', {
+      templateUrl: 'assets/templates/template-blog.html',
+    })
 });
 
 //################################

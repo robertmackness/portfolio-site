@@ -61,4 +61,4 @@ app.get('/', function(req,res){
 });
 // Customer route to customerRouter
 var customerRouter = require(__dirname + '/routes/customer_router.js');
-app.use('/customers', customerRouter);
+app.use('/customersAPI', customerRouter);

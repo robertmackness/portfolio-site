@@ -17,9 +17,6 @@ portfolioApp.config(function($routeProvider){
     .when('/portfolio/customerserviceportal', {
       templateUrl: 'assets/templates/template-portfolio-customer-service-portal.html',
     })
-    .when('/blog', {
-      templateUrl: 'assets/templates/template-blog.html',
-    })
 });
 
 //################################
@@ -27,7 +24,7 @@ portfolioApp.config(function($routeProvider){
 //################################
 // RESTful demo app - Customer API consumption
 portfolioApp.factory("CustomersAPI", function($resource) {
-  return $resource("/customers/:id", {id: "@id"}, {
+  return $resource("/customersAPI/:id", {id: "@id"}, {
       edit:  {method:'PUT', params: {id: "id"}},
   });
 });
@@ -164,4 +161,3 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     });
   }
 }]);
-

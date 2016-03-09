@@ -4,12 +4,12 @@
 // require Express (returns function to build server) then execute to create app
 var express = require('express');
 var app = express();
-// user body parser middleware for REST JSON data in req.body
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
 // use compression to gzip payloads sent to browsers
 var compression = require('compression');
 app.use(compression());
+// user body parser middleware for REST JSON data in req.body
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 //################################
 // Setup App Port and View Engine
@@ -19,8 +19,6 @@ var port = process.env.PORT || 8080;
 app.listen(port, function(){
   console.log("Portfolio App Server started and listening on port: " + port);
 });
-// Use EJS as the View Engine. Express expects a /views directory
-app.set('view engine', 'ejs');
 
 //################################
 // Setup Mongoose to connect to 
@@ -53,11 +51,13 @@ mongoose.connect("mongodb://mctesterson:mctesterson@ds011258.mongolab.com:11258/
 // Setup Express Routes into 
 //         Single Page Angular App
 //################################
-// Static Files
-app.use('/assets', express.static(__dirname + '/public'));
+// Static Files built with Gulp
+app.use('/assets', express.static(__dirname + '/build/public/'));
+// Static Files not built with Gulp
+app.use('/documents', express.static(__dirname + '/src/public/misc/'));
 // Default Route into main Angular App
 app.get('/', function(req,res){
-  res.render('main.ejs')
+  res.sendFile(__dirname+'/build/views/main.html')
 });
 // Customer route to customerRouter
 var customerRouter = require(__dirname + '/routes/customer_router.js');

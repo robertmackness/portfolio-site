@@ -6,7 +6,7 @@ var portfolioApp = angular.module('portfolioApp', ['ngRoute', 'ngResource']);
 //################################
 // ROUTES
 //################################
-portfolioApp.config(function($routeProvider){
+portfolioApp.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'assets/templates/template-main.html',
@@ -16,8 +16,8 @@ portfolioApp.config(function($routeProvider){
     })
     .when('/portfolio/customerserviceportal', {
       templateUrl: 'assets/templates/template-portfolio-customer-service-portal.html',
-    })
-});
+    });
+}]);
 
 //################################
 // FACTORIES AND CUSTOM DIRECTIVES
@@ -35,7 +35,7 @@ portfolioApp.directive('customerCardBrief', function(){
     scope: {
       customers: "=",
     }
-  }
+  };
 });
 portfolioApp.directive('customerCardFull', function(){
   return {
@@ -45,7 +45,7 @@ portfolioApp.directive('customerCardFull', function(){
       toggleModalEdit: '&',
       toggleModalDelete: '&'      
     }
-  }
+  };
 });
 // RESTful demo app - Modal Dialogue for Editing Customers
 portfolioApp.directive('customerModalDialogueEdit', function(){
@@ -57,7 +57,7 @@ portfolioApp.directive('customerModalDialogueEdit', function(){
       submitChanges: '&',
       hideModal: '&'
       }
-    }
+    };
 });
 // RESTful demo app - Modal Dialogue for Deleting Customers
 portfolioApp.directive('customerModalDialogueDelete', function(){
@@ -69,7 +69,7 @@ portfolioApp.directive('customerModalDialogueDelete', function(){
       deleteCurrentCustomer: '&',
       hideModal: '&'
       }
-    }
+    };
 });
 // RESTful demo app - Modal Dialogue for Create Customers
 portfolioApp.directive('customerModalDialogueCreate', function(){
@@ -81,7 +81,7 @@ portfolioApp.directive('customerModalDialogueCreate', function(){
       submitNewCustomer: '&',
       hideModal: '&'
       }
-    }
+    };
 });
 
 //################################
@@ -99,7 +99,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   // SET CURRENT CUSTOMER ID
   $scope.setCurrentCustomerId = function(customer){
     $scope.currentCustomer = customer;
-  }
+  };
   // TYPEAHEAD SEARCH
   // Reduce total number of API calls by using setTimeout and clearTimeout
   var timeoutID;
@@ -108,7 +108,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
           if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }  
-        })    
+        });   
       }, 500);
   });
   // MODAL DIALOGUES
@@ -120,7 +120,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   $scope.hideModalEdit = function() {
     $scope.showModalEdit = false;
     $scope.currentCustomer = CustomersAPI.get( {id: $scope.currentCustomer._id});
-  }
+  };
   $scope.submitChanges = function(customerObject){
     CustomersAPI.edit({customerObject: customerObject}, function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
@@ -128,7 +128,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
           $scope.showModalEdit = false;
         });
     });
-  }
+  };
   // Customer Create
   $scope.newCustomer = {};
   $scope.showModalCreate = false;
@@ -137,15 +137,14 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
   };
   $scope.hideModalCreate = function() {
     $scope.showModalCreate = false;
-  }
+  };
   $scope.submitNewCustomer = function(customerObject){
     CustomersAPI.save({customerObject: customerObject}, function(returnedCustomer){
       $scope.showModalCreate = false;
       $scope.currentCustomer = CustomersAPI.get( {id: returnedCustomer._id});
       $scope.searchString = "";
     });
-
-  }
+  };
   // Customer Delete
   $scope.showModalDelete = false;
   $scope.toggleModalDelete = function() {
@@ -159,5 +158,5 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     CustomersAPI.delete({id: $scope.currentCustomer._id}, function(){
       if($scope.customers[0]._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
     });
-  }
+  };
 }]);

@@ -12,6 +12,22 @@ var stripDebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
 var autoprefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
+var nodemon = require('gulp-nodemon');
+
+gulp.task('demon', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: {
+      'NODE_ENV': 'development'
+    }
+  })
+    .on('start', ['default'])
+    .on('change', ['default'])
+    .on('restart', function () {
+      console.log('restarted!');
+    });
+});
 
 // default gulp task
 gulp.task('default', ['imagemin', 'miniHTML', 'miniJavascript', 'miniCSS'], function() {

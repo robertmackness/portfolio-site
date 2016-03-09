@@ -23,11 +23,11 @@ portfolioApp.config(['$routeProvider', function($routeProvider){
 // FACTORIES AND CUSTOM DIRECTIVES
 //################################
 // RESTful demo app - Customer API consumption
-portfolioApp.factory("CustomersAPI", function($resource) {
+portfolioApp.factory('CustomersAPI',['$resource', function($resource) {
   return $resource("/customersAPI/:id", {id: "@id"}, {
       edit:  {method:'PUT', params: {id: "id"}},
   });
-});
+}]);
 // RESTful demo app - Customer Cards
 portfolioApp.directive('customerCardBrief', function(){
   return {

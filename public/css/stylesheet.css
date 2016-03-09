@@ -3,8 +3,6 @@ body {
   background-color: #18bc9c;
   color: white;
   padding-top: 100px;
-  background-image: url('/assets/images/background.jpg'); /** https://pixabay.com/en/castle-edinburgh-art-fountain-859331/ **/
-  background-size: cover;
 }
 
 .ng-scope{

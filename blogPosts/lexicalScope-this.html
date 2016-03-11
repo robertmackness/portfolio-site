@@ -1,0 +1,136 @@
+<h2>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: x-large;"><u>
+Lexical Scope vs 'this'</u></span></h2>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">If the following code snippet looks sane or safe, then this article is for you.&nbsp;</span><br />
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><b><u>Protip: don't run this code.</u></b></span><br />
+<!-- HTML generated using hilite.me --><br />
+<div style="background: #272822; border-width: 0.1em 0.1em 0.1em 0.8em; border: solid gray; overflow: auto; padding: 0.2em 0.6em; width: auto;">
+<pre style="line-height: 125%; margin: 0;"><span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">addCounter</span><span style="color: #f8f8f2;">(){</span>
+  <span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">counters</span> <span style="color: #f92672;">+=</span><span style="color: #ae81ff;">1</span><span style="color: #f8f8f2;">;</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">countToFive</span><span style="color: #f8f8f2;">(){</span>
+ <span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">counters</span> <span style="color: #f92672;">=</span> <span style="color: #ae81ff;">0</span><span style="color: #f8f8f2;">;</span>
+
+ <span style="color: #66d9ef;">while</span><span style="color: #f8f8f2;">(</span><span style="color: #a6e22e;">counters</span> <span style="color: #f92672;">&lt;</span><span style="color: #ae81ff;">5</span><span style="color: #f8f8f2;">){</span>
+    <span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">addCounter</span><span style="color: #f8f8f2;">()</span></pre>
+<pre style="line-height: 125%; margin: 0;">  <span style="color: #f8f8f2;">}</span>
+<span style="color: #f8f8f2;">}</span>
+
+
+<span style="color: #a6e22e;">countToFive</span><span style="color: #f8f8f2;">();  // don't do it</span>
+</pre>
+</div>
+<br />
+<h3>
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">'this' code is wrong - badumtsch&nbsp;</span></h3>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">The variable 'counters' located within the function countToFive() never increments, and so the while loops condition is never satisfied, causing an infinite loop.&nbsp;</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">If 'counters' within countToFive() is never incremented, what is being incremented? And if we didn't declare another 'counters' variable anywhere, why isn't there an error stating that 'counters' is not defined?&nbsp;</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">On a side note, shouldn't SOMETHING happen when this unseen 'counters' variable hits the maximum size for a number in Javascript?</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<br />
+<h3>
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">What is happening and why do I smell something burning?</span></h3>
+</div>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">These functions live on a parent object, whether that be the global or window object, and so their 'this' context has been set accordingly.&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span></div>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Calling (this.key = value;) on an object sets up a key/value pair, and so addCounter() is actually creating a key called counters on the global/window object and trying to add 1 to the current value.&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span></div>
+<div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">What is the value of a variable on declaration before assignment? 'undefined'. What is returned when you add 1 to undefined? NaN.</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">What we need to do is somehow change the context of 'this' and perhaps modularize our code a little. Luckily, a function defined on a Javascript object (aka a method) has it's context set to that object, it's just that simple.</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span></div>
+<div>
+<h3>
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">'this' is better</span></h3>
+</div>
+<!-- HTML generated using hilite.me -->
+
+<br />
+<div>
+<div style="background: #272822; border-width: 0.1em 0.1em 0.1em 0.8em; border: solid gray; overflow: auto; padding: 0.2em 0.6em; width: auto;">
+<pre style="line-height: 125%; margin: 0;"><span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">addCounter</span><span style="color: #f8f8f2;">(){</span>
+  <span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">counters</span> <span style="color: #f92672;">+=</span><span style="color: #ae81ff;">1</span><span style="color: #f8f8f2;">;</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">countToFive</span><span style="color: #f8f8f2;">(){</span>
+
+ <span style="color: #66d9ef;">while</span><span style="color: #f8f8f2;">(</span><span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">counters</span> <span style="color: #f92672;">&lt;</span><span style="color: #ae81ff;">5</span><span style="color: #f8f8f2;">){</span>
+    <span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">addCounter</span><span style="color: #f8f8f2;">();</span>
+    <span style="color: #a6e22e;">console</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">log</span><span style="color: #f8f8f2;">(</span><span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">counters</span><span style="color: #f8f8f2;">);</span>
+  <span style="color: #f8f8f2;">}</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">countingMachine</span> <span style="color: #f92672;">=</span> <span style="color: #f8f8f2;">{</span>
+  <span style="color: #a6e22e;">counters</span>    <span style="color: #f92672;">:</span>  <span style="color: #ae81ff;">0</span><span style="color: #f8f8f2;">,</span>
+  <span style="color: #a6e22e;">countToFive</span> <span style="color: #f92672;">:</span>  <span style="color: #a6e22e;">countToFive</span><span style="color: #f8f8f2;">,</span>
+  <span style="color: #a6e22e;">addCounter</span>  <span style="color: #f92672;">:</span>  <span style="color: #a6e22e;">addCounter</span>
+
+<span style="color: #f8f8f2;">}</span>
+<span style="color: #a6e22e;">countingMachine</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">countToFive</span><span style="color: #f8f8f2;">();</span>
+</pre>
+</div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Hold on, how can we reference countToFive as the value for the countToFive key, wouldn't the Javascript engine look at the object and try to assign the value of countToFive as the value returned by the countToFive key, which is countToFive, which points to... and so on.</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Without the use of 'this', there is no context injected, and so the Javascript engine starts looking around the Lexical Scope for the variable to assign to the key inside the countingMachine object we defined. Scoping is explained below.</span><br />
+<br />
+<h3>
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Lexical Scoping</span></h3>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">What are lexical scopes? It's easier and more intuitive to show you with an example:</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+
+
+
+<!-- HTML generated using hilite.me --><br />
+<div style="background: #272822; border-width: 0.1em 0.1em 0.1em 0.8em; border: solid gray; overflow: auto; padding: 0.2em 0.6em; width: auto;">
+<pre style="line-height: 125%; margin: 0;"><span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">a</span> <span style="color: #f92672;">=</span> <span style="color: #e6db74;">"global"</span><span style="color: #f8f8f2;">;</span>
+
+<span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">scope1</span><span style="color: #f8f8f2;">(){</span>
+  <span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">a</span> <span style="color: #f92672;">=</span> <span style="color: #e6db74;">"scope1"</span><span style="color: #f8f8f2;">;</span>
+  <span style="color: #a6e22e;">console</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">log</span><span style="color: #f8f8f2;">(</span><span style="color: #a6e22e;">a</span><span style="color: #f8f8f2;">,</span><span style="color: #a6e22e;">b</span><span style="color: #f8f8f2;">);</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">scope2</span><span style="color: #f8f8f2;">()</span> <span style="color: #f8f8f2;">{</span>
+  <span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">b</span> <span style="color: #f92672;">=</span> <span style="color: #e6db74;">"scope2"</span><span style="color: #f8f8f2;">;</span>
+  <span style="color: #a6e22e;">console</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">log</span><span style="color: #f8f8f2;">(</span><span style="color: #a6e22e;">a</span><span style="color: #f8f8f2;">,</span><span style="color: #a6e22e;">b</span><span style="color: #f8f8f2;">);</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #66d9ef;">function</span> <span style="color: #a6e22e;">scope3</span><span style="color: #f8f8f2;">(){</span>
+  <span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">a</span> <span style="color: #f92672;">=</span> <span style="color: #e6db74;">"scope3"</span><span style="color: #f8f8f2;">;</span>
+  <span style="color: #f8f8f2;">(</span><span style="color: #66d9ef;">function</span><span style="color: #f8f8f2;">(){</span>
+    <span style="color: #66d9ef;">var</span> <span style="color: #a6e22e;">a</span> <span style="color: #f92672;">=</span> <span style="color: #e6db74;">"innerScope"</span><span style="color: #f8f8f2;">;</span>
+    <span style="color: #a6e22e;">console</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">log</span><span style="color: #f8f8f2;">(</span><span style="color: #a6e22e;">a</span><span style="color: #f8f8f2;">);</span>
+    <span style="color: #a6e22e;">console</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">log</span><span style="color: #f8f8f2;">(</span><span style="color: #66d9ef;">this</span><span style="color: #f8f8f2;">.</span><span style="color: #a6e22e;">a</span><span style="color: #f8f8f2;">);</span>
+  <span style="color: #f8f8f2;">})();</span>
+<span style="color: #f8f8f2;">}</span>
+
+<span style="color: #a6e22e;">scope1</span><span style="color: #f8f8f2;">();</span> <span style="color: #75715e;">// "scope1"</span>
+          <span style="color: #75715e;">// Uncaught Reference Error 'b' is not defined</span>
+
+<span style="color: #a6e22e;">scope2</span><span style="color: #f8f8f2;">();</span> <span style="color: #75715e;">// "global", "scope2"</span>
+
+<span style="color: #a6e22e;">scope3</span><span style="color: #f8f8f2;">();</span> <span style="color: #75715e;">// "innerScope"</span>
+          <span style="color: #75715e;">// "global"</span>
+</pre>
+</div>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span><span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Functions wrap up lexical scope, and the Javascript engine searches each scope outwards until a variable is found that matches. If none are found, you get an Uncaught Reference Error.</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Scope1 and scope2 adhere to the rule explained above, but what's going in with scope3, and what is that weird function contained within?</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Check out my article on IIFE's (Immediately Invoked Function Expressions, pronounced iffeys) if you're interested in the syntax of the nested function. If not, just know that it's a function nested inside another function, creating another scope.</span><br />
+<br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Inside the nested function's scope is a new variable 'a' and a reference to this.a. We know that the context of 'this' hasn't changed, so it must be pointed at the global object. And using the lexical scoping rules of searching outwards, we know that a returns "innerscope".</span><br />
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+<br />
+<h3>
+<span style="color: yellow; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Wrap-Up</span></h3>
+<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">We've covered 'this' context and lexical scoping, but the only way you'll remember any of this is if you go and code your own examples. Good luck!</span></div>

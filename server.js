@@ -54,7 +54,7 @@ mongoose.connect("mongodb://mctesterson:mctesterson@ds011258.mongolab.com:11258/
 // Static Files built with Gulp
 app.use('/assets', express.static(__dirname + '/build/public/'));
 // Static Files not built with Gulp
-app.use('/documents', express.static(__dirname + '/src/public/misc/'));
+app.use('/documents', express.static(__dirname + '/build/public/documents/'));
 // Default Route into main Angular App
 app.get('/', function(req,res){
   res.sendFile(__dirname+'/build/views/main.html')

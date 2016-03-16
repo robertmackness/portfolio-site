@@ -279,7 +279,7 @@ Portfolio page Styling
 ##########################*/ 
 .portfolio-title {
   font-family: Lobster;
-  font-size: 30px;
+  font-size: 45px;
   margin-top: 30px;
 }
 .portfolio-preview-container{
@@ -287,9 +287,18 @@ Portfolio page Styling
   margin-top: 20px;
   background-color: #2c3e50;
   border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px; 
 }
 .portfolio-preview-container .header-group a{
   color:white;
+  font-weight: lighter;
+  font-family: Helvetica;
+  font-size: 30px;
+}
+
+.portfolio-preview-container .image-container{
+  margin-top: 15px;
 }
 
 .portfolio-preview-container .preview-image{
@@ -306,8 +315,9 @@ Portfolio page Styling
   display: block;
   font-family: Helvetica;
   margin-top: 15px;
-  margin-bottom: 15px;
   text-align: center;
+  font-size: 16px;
+  line-height: 150%;
 }
 .portfolio-preview-container a{
   color: white;

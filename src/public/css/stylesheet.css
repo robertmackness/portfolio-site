@@ -283,13 +283,14 @@ Portfolio page Styling
   border-radius: 10px;
   padding-top: 15px;
   padding-bottom: 15px; 
+  margin-top: 30px;
 }
 
 .portfolio-preview-container .header-group{
   color:white;
   font-weight: lighter;
   font-family: Helvetica;
-  font-size: 25px;
+  font-size: 30px;
   text-align: left;
   padding: 0;
 }
@@ -322,9 +323,12 @@ Portfolio page Styling
   margin-top: 15px;
   text-align: left;
   font-size: 16px;
-  line-height: 150%;
   color: white;
 }
+.portfolio-preview-container .description p {
+  margin-bottom: 0;
+}
+
 .portfolio-preview-container .description strong{
   font-size: 20px;
   font-family: Helvetica;

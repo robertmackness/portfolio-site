@@ -275,30 +275,23 @@ Portfolio page Styling
   font-family: Lobster;
   font-size: 45px;
   margin-top: 30px;
+  display: block;
+  float: none;
 }
 .portfolio-preview-container{
-  float: none;
-  margin-top: 20px;
-  background-color: #44717d;
+  padding: 5px;
   border-radius: 10px;
   padding-top: 15px;
   padding-bottom: 15px; 
 }
 
-.portfolio-preview-container .header-group h3{
+.portfolio-preview-container .header-group{
   color:white;
   font-weight: lighter;
   font-family: Helvetica;
   font-size: 25px;
   text-align: left;
-}
-
-.portfolio-preview-container .header-group h4{
-  color:white;
-  font-weight: lighter;
-  font-family: Helvetica;
-  font-size: 20px;
-  text-align: left;
+  padding: 0;
 }
 
 .portfolio-preview-container .header-group a{
@@ -320,7 +313,7 @@ Portfolio page Styling
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
-  border: 4px solid #18bc9c;
+  border: 4px solid #2c3e50;
 }
 
 .portfolio-preview-container .description{
@@ -330,7 +323,13 @@ Portfolio page Styling
   text-align: left;
   font-size: 16px;
   line-height: 150%;
+  color: white;
 }
+.portfolio-preview-container .description strong{
+  font-size: 20px;
+  font-family: Helvetica;
+}
+
 .portfolio-preview-container a{
   color: white;
 }

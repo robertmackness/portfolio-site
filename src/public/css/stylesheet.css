@@ -106,30 +106,6 @@ Template-Main Styling
 }
 
 /*###########################
-CV/Resume Styling
-##########################*/ 
-.cv-container {
-font-family: Helvetica;
-font-size: 15px;
-}
-
-.cv-container h4 {
-  font-family: 'Passion One';
-  font-size: 25px;
-}
-
-.cv-container .icon{
-  text-align: right;
-  height: 75px;
-}
-
-.cv-container .icon img{
-  height: 100%;
-  width: auto;
-}
-
-
-/*###########################
 Demo Apps Styling
 ##########################*/ 
 .demo-app-title{
@@ -309,13 +285,22 @@ Portfolio page Styling
   padding-bottom: 15px; 
 }
 
+.portfolio-preview-container .header-group h3{
+  color:white;
+  font-weight: lighter;
+  font-family: Helvetica;
+  font-size: 25px;
+  text-align: left;
+}
+
 .portfolio-preview-container .header-group h4{
   color:white;
   font-weight: lighter;
   font-family: Helvetica;
   font-size: 20px;
-
+  text-align: left;
 }
+
 .portfolio-preview-container .header-group a{
   color:white;
   font-weight: lighter;
@@ -328,7 +313,8 @@ Portfolio page Styling
 }
 
 .portfolio-preview-container .preview-image{
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   display: block;
   float: none;
   margin-left: auto;
@@ -339,9 +325,9 @@ Portfolio page Styling
 
 .portfolio-preview-container .description{
   display: block;
-  font-family: Helvetica;
+  font-family: 'PT Serif', serif;
   margin-top: 15px;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   line-height: 150%;
 }

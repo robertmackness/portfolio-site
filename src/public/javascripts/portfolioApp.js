@@ -101,16 +101,9 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.currentCustomer = customer;
   };
   // TYPEAHEAD SEARCH
-  // Reduce total number of API calls by using setTimeout and clearTimeout
-  var timeoutID;
+
   $scope.$watch('searchString', function(){
-      if(timeoutID) clearTimeout(timeoutID);
-      timeoutID = setTimeout(function(){
-        $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          
-          if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }; 
-        });   
-      }, 500);
+    $scope.customerSearch();
   });
   // MODAL DIALOGUES
   // Customer Edit
@@ -123,11 +116,9 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.currentCustomer = CustomersAPI.get( {id: $scope.currentCustomer._id});
   };
   $scope.submitChanges = function(customerObject){
-    CustomersAPI.edit({customerObject: customerObject}, function(){
-        $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
-          $scope.showModalEdit = false;
-        });
+    CustomersAPI.edit({customerObject: $scope.sanitiseCustomer(customerObject)}, function(){
+      $scope.showModalEdit = false;
+      $scope.searchString = customerObject.first_name + " " + customerObject.last_name + " " + customerObject.company;
     });
   };
   // Customer Create
@@ -140,10 +131,9 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.showModalCreate = false;
   };
   $scope.submitNewCustomer = function(customerObject){
-    CustomersAPI.save({customerObject: customerObject}, function(returnedCustomer){
+    CustomersAPI.save({customerObject: $scope.sanitiseCustomer(customerObject)}, function(returnedCustomer){
       $scope.showModalCreate = false;
-      $scope.currentCustomer = CustomersAPI.get( {id: returnedCustomer._id});
-      $scope.searchString = "";
+      $scope.searchString = customerObject.first_name + " " + customerObject.last_name + " " + customerObject.company;
     });
   };
   // Customer Delete
@@ -158,6 +148,37 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     $scope.showModalDelete = false;
     CustomersAPI.delete({id: $scope.currentCustomer._id}, function(){
       if($scope.customers[0]._id) $scope.currentCustomer = CustomersAPI.get( {id: $scope.customers[0]._id});
+      $scope.searchString = "";
     });
   };
+  // Sanitisation of customer objects
+  $scope.sanitiseCustomer = function(customerObject){
+    // Sanitise before sending to API
+    var customerSanitised = customerObject;
+    customerSanitised.first_name = customerSanitised.first_name.toLowerCase();
+    customerSanitised.last_name = customerSanitised.last_name.toLowerCase();
+    customerSanitised.company = customerSanitised.company.toLowerCase();
+    return customerSanitised;
+  }
+  // Customer Search
+  // Reduce total number of API calls by using setTimeout and clearTimeout
+  var timeoutID;
+  $scope.customerSearch = function(){
+      if(timeoutID) clearTimeout(timeoutID);
+      timeoutID = setTimeout(function(){
+        $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
+          if($scope.customers[0]){
+            for(var i = 0; i < $scope.customers.length; i++){
+              $scope.customers[i].first_name = $scope.customers[i].first_name[0].toUpperCase() + 
+                                                            $scope.customers[i].first_name.substr(1);
+              $scope.customers[i].last_name  = $scope.customers[i].last_name[0].toUpperCase()  + 
+                                                            $scope.customers[i].last_name.substr(1);
+              $scope.customers[i].company    = $scope.customers[i].company[0].toUpperCase()    + 
+                                                            $scope.customers[i].company.substr(1);
+              }
+          }
+            $scope.currentCustomer = $scope.customers[0];
+        }); 
+      }, 500);
+  }
 }]);

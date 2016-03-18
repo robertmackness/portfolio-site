@@ -84,7 +84,7 @@ gulp.task('miniJavascript', function() {
       jsDestination = './build/public/javascripts/';
 
   gulp.src(jsSource)
-    .pipe(stripDebug())
+    //.pipe(stripDebug())
     .pipe(uglify())
     .pipe(gulp.dest(jsDestination));
 });

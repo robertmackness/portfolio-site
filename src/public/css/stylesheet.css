@@ -159,6 +159,7 @@ margin-top: 10px;
   overflow-x: hidden;
   background-color: #18bc9c;
   background-image: url('/assets/images/customerCardSubmitBackground.png');
+  word-wrap: break-word;
 }
 
 .customer-card-full .panel-heading {

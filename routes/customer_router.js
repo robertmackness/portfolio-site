@@ -8,26 +8,74 @@ var customer = require(__dirname + '/../custom_modules/mongoose_schema_customer.
 
 // QUERY
 router.get('', function(req, res, next) {
+
+  // Set up an array containing search terms
+  var searchTermsArray;
   if(req.query.searchString){
-    var searchRegex = new RegExp(req.query.searchString,'i');
-    customer.find({ $or: [
-                         {first_name: {$regex: searchRegex} }, 
-                         {last_name: {$regex: searchRegex} }, 
-                         {company: {$regex: searchRegex} } 
-                         ]
-                  })
-    .exec(function(err, customers){
-      if (err) console.error(err);
-      res.json(customers);
-      res.end();
-    });
-  }else{
-    customer.find({}).limit(10).exec(function(err, customers){
-      if (err) console.error(err);
-      res.json(customers);
-      res.end();
-    });
+    searchTermsArray = req.query.searchString.split(' ');
+    for(var i = 0; i < searchTermsArray.length; i++){
+      searchTermsArray[i] = searchTermsArray[i].toLowerCase();
+    }
   }
+  console.log(searchTermsArray);
+
+  if(searchTermsArray){
+    if(searchTermsArray.length === 1){
+      var searchRegex = new RegExp('^'+req.query.searchString,'i');
+      customer.find({ $or: [
+                           {first_name: {$regex: searchRegex} }, 
+                           {last_name:  {$regex: searchRegex} }, 
+                           {company:    {$regex: searchRegex} } 
+                           ]
+                    })
+      .exec(function(err, customers){
+        if (err) console.error(err);
+        res.json(customers);
+        res.end();
+      });
+    }else if(searchTermsArray.length === 2){
+      var searchRegex1 = new RegExp('^'+searchTermsArray[0],'i');
+      var searchRegex2 = new RegExp('^'+searchTermsArray[1],'i');
+      customer.find({ $or: [
+                           {first_name: {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}}, 
+                           {last_name:  {$regex: searchRegex1}, first_name: {$regex: searchRegex2}},
+                           {company:    {$regex: searchRegex1}, first_name: {$regex: searchRegex2}}, 
+                           {first_name: {$regex: searchRegex1}, company:    {$regex: searchRegex2}},
+                           {company:    {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}}, 
+                           {last_name:  {$regex: searchRegex1},  company:   {$regex: searchRegex2}}
+                           ]
+                    })
+      .exec(function(err, customers){
+        if (err) console.error(err);
+        res.json(customers);
+        res.end();
+      });
+    }else if(searchTermsArray.length >= 3){
+      var searchRegex1 = new RegExp('^'+searchTermsArray[0],'i');
+      var searchRegex2 = new RegExp('^'+searchTermsArray[1],'i');
+      var searchRegex3 = new RegExp('^'+searchTermsArray[2],'i');
+      customer.find({ $or: [
+                           {first_name: {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, company:         {$regex: searchRegex3}}, 
+                           {last_name:  {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, company:         {$regex: searchRegex3}}, 
+                           {company:    {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, last_name:       {$regex: searchRegex3}},  
+                           {company:    {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, first_name:      {$regex: searchRegex3}}, 
+                           {last_name:  {$regex: searchRegex1}, company:    {$regex: searchRegex2}, first_name:      {$regex: searchRegex3}},  
+                           {first_name: {$regex: searchRegex1}, company:    {$regex: searchRegex2}, last_name:       {$regex: searchRegex3}},
+                           ]
+                    })
+      .exec(function(err, customers){
+        if (err) console.error(err);
+        res.json(customers);
+        res.end();
+      });
+    }
+  }else{
+      customer.find({}).limit(10).exec(function(err, customers){
+        if (err) console.error(err);
+        res.json(customers);
+        res.end();
+      });
+    }
 
 });
 

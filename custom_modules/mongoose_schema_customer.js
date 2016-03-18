@@ -10,12 +10,10 @@ var customerSchema = new Schema({
   last_name: String,
   job_title: String,
   email: String,
-  telephone: String,
+  phone: String,
   account_balance: Number,
   company: String,
-  street: String,
-  city: String,
-  country: String
+  address: String
 });
 
 // Create a data model using the customer schema

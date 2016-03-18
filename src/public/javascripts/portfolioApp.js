@@ -107,7 +107,8 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
       if(timeoutID) clearTimeout(timeoutID);
       timeoutID = setTimeout(function(){
         $scope.customers = CustomersAPI.query({searchString: $scope.searchString}, function(){
-          if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }  
+          
+          if($scope.customers[0]){ $scope.currentCustomer = $scope.customers[0]; }; 
         });   
       }, 500);
   });

@@ -27,25 +27,17 @@
             <span class="input-group-addon" id="basic-addon1">Company</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.company" name="company" required>
           </div>
-          <div class="input-group" ng-class="{'has-error': customerCreateForm.telephone.$invalid}">
-            <span class="input-group-addon" id="basic-addon1">Telephone</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1"  ng-model="newCustomerObject.telephone" name="telephone" required>
+          <div class="input-group" ng-class="{'has-error': customerCreateForm.phone.$invalid}">
+            <span class="input-group-addon" id="basic-addon1">Phone</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1"  ng-model="newCustomerObject.phone" name="phone" required>
           </div>
           <div class="input-group" ng-class="{'has-error': customerCreateForm.email.$invalid}">
             <span class="input-group-addon" id="basic-addon1">Email</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.email" name="email" required>
           </div>
-          <div class="input-group" ng-class="{'has-error': customerCreateForm.street.$invalid}">
-            <span class="input-group-addon" id="basic-addon1">Street</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.street" name="street" required>
-          </div>
-          <div class="input-group" ng-class="{'has-error': customerCreateForm.city.$invalid}">
-            <span class="input-group-addon" id="basic-addon1">City</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.city" name="city" required>
-          </div>
-          <div class="input-group" ng-class="{'has-error': customerCreateForm.country.$invalid}">
-            <span class="input-group-addon" id="basic-addon1">Country</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.country" name="country" required>
+          <div class="input-group" ng-class="{'has-error': customerCreateForm.address.$invalid}">
+            <span class="input-group-addon" id="basic-addon1">Address</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="newCustomerObject.address" name="address" required>
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary"
@@ -60,19 +52,3 @@
     </div><!--/content-->
   </div><!--/dialogue-->
 </div><!--/modal-container-->
-
-<!--
-Example customer object:
-{
-  _id: "56c5104bf52a18f31ae5c4a4"
-  city: "Nizhniye Vyazovyye"
-  company: "Tanoodle"
-  country: "Russia"
-  email: "sfowler0@wsj.com"
-  first_name: "Steven"
-  job_title: "Computer Systems Analyst II"
-  last_name: "Fowler"
-  street: "5240 3rd Circle"
-  telephone: "7-(789)797-0263"
-}
--->

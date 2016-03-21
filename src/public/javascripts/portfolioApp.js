@@ -87,6 +87,11 @@ portfolioApp.directive('customerModalDialogueCreate', function(){
 //################################
 // CONTROLLERS
 //################################
+
+portfolioApp.controller('main', ['$scope', '$document', function($scope, $document){
+ $document[0].body.style.visibility = "visible";
+}]);
+
 portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'CustomersAPI', function($scope, $resource, CustomersAPI){
   //INITIAL SETUP
   $scope.currentCustomer = {};

@@ -164,7 +164,7 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
     customerSanitised.last_name = customerSanitised.last_name.toLowerCase();
     customerSanitised.company = customerSanitised.company.toLowerCase();
     return customerSanitised;
-  }
+  };
   // Customer Search
   // Reduce total number of API calls by using setTimeout and clearTimeout
   var timeoutID;
@@ -185,5 +185,5 @@ portfolioApp.controller('customerServicePortal', ['$scope', '$resource', 'Custom
             $scope.currentCustomer = $scope.customers[0];
         }); 
       }, 500);
-  }
+  };
 }]);

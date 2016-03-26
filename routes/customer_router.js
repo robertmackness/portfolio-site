@@ -42,7 +42,7 @@ router.get('', function(req, res, next) {
                            {company:    {$regex: searchRegex1}, first_name: {$regex: searchRegex2}}, 
                            {first_name: {$regex: searchRegex1}, company:    {$regex: searchRegex2}},
                            {company:    {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}}, 
-                           {last_name:  {$regex: searchRegex1},  company:   {$regex: searchRegex2}}
+                           {last_name:  {$regex: searchRegex1}, company:    {$regex: searchRegex2}}
                            ]
                     })
       .exec(function(err, customers){
@@ -55,12 +55,12 @@ router.get('', function(req, res, next) {
       var searchRegex2 = new RegExp('^'+searchTermsArray[1],'i');
       var searchRegex3 = new RegExp('^'+searchTermsArray[2],'i');
       customer.find({ $or: [
-                           {first_name: {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, company:         {$regex: searchRegex3}}, 
-                           {last_name:  {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, company:         {$regex: searchRegex3}}, 
-                           {company:    {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, last_name:       {$regex: searchRegex3}},  
-                           {company:    {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, first_name:      {$regex: searchRegex3}}, 
-                           {last_name:  {$regex: searchRegex1}, company:    {$regex: searchRegex2}, first_name:      {$regex: searchRegex3}},  
-                           {first_name: {$regex: searchRegex1}, company:    {$regex: searchRegex2}, last_name:       {$regex: searchRegex3}},
+                           {first_name: {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, company:      {$regex: searchRegex3}}, 
+                           {last_name:  {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, company:      {$regex: searchRegex3}}, 
+                           {company:    {$regex: searchRegex1}, first_name: {$regex: searchRegex2}, last_name:    {$regex: searchRegex3}},  
+                           {company:    {$regex: searchRegex1}, last_name:  {$regex: searchRegex2}, first_name:   {$regex: searchRegex3}}, 
+                           {last_name:  {$regex: searchRegex1}, company:    {$regex: searchRegex2}, first_name:   {$regex: searchRegex3}},  
+                           {first_name: {$regex: searchRegex1}, company:    {$regex: searchRegex2}, last_name:    {$regex: searchRegex3}},
                            ]
                     })
       .exec(function(err, customers){

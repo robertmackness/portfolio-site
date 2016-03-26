@@ -3,7 +3,7 @@ body {
   font-family: sans-serif;
   background-color: #18bc9c;
   color: white;
-  padding-top: 100px;
+  padding-top: 75px;
 }
 
 .ng-scope{
@@ -282,7 +282,7 @@ Portfolio page Styling
   border-radius: 10px;
   padding-top: 15px;
   padding-bottom: 15px; 
-  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .portfolio-preview-container .header-group{

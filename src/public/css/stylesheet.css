@@ -1,4 +1,7 @@
- 
+*{
+  color: white;
+  transition: 1s;
+} 
 body {
   font-family: sans-serif;
   background-color: #18bc9c;
@@ -102,9 +105,6 @@ Template-Main Styling
   top: 50%;
   right: 50%;
   transform: translate(50%, 50%);
-  -moz-transform: translate(50%, 50%);
-  -o-transform: translate(50%, 50%);
-  -webkit-transform: translate(50%, 50%);
 }
 
 /*###########################

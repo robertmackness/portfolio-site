@@ -10,7 +10,9 @@ app.use(compression());
 // user body parser middleware for REST JSON data in req.body
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-
+// use serve-favicon 
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/build/public/favicon.ico'));
 //################################
 // Setup App Port and View Engine
 //################################

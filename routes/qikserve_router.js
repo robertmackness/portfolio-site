@@ -5,8 +5,7 @@ var router = express.Router();
 // GET /qikserve/products
 router.get('/products', function(req, res, next) {
   res.json(
-     {
-      products: [
+     [
         {
           Product_ID: 1,
           Name: "Apples",
@@ -47,14 +46,13 @@ router.get('/products', function(req, res, next) {
           Cost_Price: 1,
           List_Price: 1.2
        }
-      ]
-     }
+    ]
   );
 });
 
 router.get('/discounts', function(req, res, next) {
   res.json(
-     { discounts: [
+      [
         {
           Discount_ID: 1,
           Type: "Category",
@@ -78,7 +76,6 @@ router.get('/discounts', function(req, res, next) {
           Priority_Level: 10
        }
       ]
-    }
   );
 });
 

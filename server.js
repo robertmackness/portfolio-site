@@ -61,3 +61,6 @@ app.get('/', function(req,res){
 // Customer route to customerRouter
 var customerRouter = require(__dirname + '/routes/customer_router.js');
 app.use('/customersAPI', customerRouter);
+// Qiksere router for small json API
+var qikServeRouter = require(__dirname + '/routes/qikserve_router.js');
+app.use('/qikserveAPI', qikServeRouter);

@@ -5,6 +5,7 @@ var router = express.Router();
 // GET /qikserve/products
 router.get('/products', function(req, res, next) {
   res.json(
+  { products:
      [
         {
           Product_ID: 1,
@@ -47,35 +48,38 @@ router.get('/products', function(req, res, next) {
           List_Price: 1.2
        }
     ]
+  }
   );
 });
 
 router.get('/discounts', function(req, res, next) {
   res.json(
-      [
-        {
-          Discount_ID: 1,
-          Type: "Category",
-          Target: "Soda",
-          Discount_Qty: 3,
-          Discount_Percent: 100,
-          Discount_Set_Price: null, 
-          Customer_Msg: "Buy 2 get the third free on all Soda!",
-          Internal_Reason: "Stock nearing Best Before date",
-          Priority_Level: 10
-       },
-        {
-          Discount_ID: 2,
-          Type: "Product",
-          Target_Product_ID: 5,
-          Discount_Qty: 2,
-          Discount_Percent: null,
-          Discount_Set_Price: 5, 
-          Customer_Msg: "Buy 2 microwave meals for £5!",
-          Internal_Reason: "Stock nearing Best Before date",
-          Priority_Level: 10
-       }
-      ]
+      { discounts:
+            [
+              {
+                Discount_ID: 1,
+                Type: "Category",
+                Target: "Soda",
+                Discount_Qty: 3,
+                Discount_Percent: 100,
+                Discount_Set_Price: null, 
+                Customer_Msg: "Buy 2 get the third free on all Soda!",
+                Internal_Reason: "Stock nearing Best Before date",
+                Priority_Level: 10
+              },
+              {
+                Discount_ID: 2,
+                Type: "Product",
+                Target_Product_ID: 5,
+                Discount_Qty: 2,
+                Discount_Percent: null,
+                Discount_Set_Price: 5, 
+                Customer_Msg: "Buy 2 microwave meals for £5!",
+                Internal_Reason: "Stock nearing Best Before date",
+                Priority_Level: 10
+              }
+            ]
+      }
   );
 });
 

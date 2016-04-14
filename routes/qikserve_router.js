@@ -44,8 +44,8 @@ router.get('/products', function(req, res, next) {
           Name: "TV Dinner",
           Brand: "Rustlers",
           Category: "Microwave Meal",
-          Cost_Price: 1,
-          List_Price: 1.2
+          Cost_Price: 2,
+          List_Price: 3.5
        }
     ]
   }

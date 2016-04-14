@@ -70,7 +70,7 @@ router.get('/discounts', function(req, res, next) {
               {
                 Discount_ID: 2,
                 Type: "Product",
-                Target_Product_ID: 5,
+                Target: "5",
                 Discount_Qty: 2,
                 Discount_Percent: null,
                 Discount_Set_Price: 5, 

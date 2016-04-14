@@ -32,7 +32,7 @@ router.get('/products', function(req, res, next) {
           List_Price: 0.65
        },
        {
-          ID: 4,
+          Product_ID: 4,
           Name: "Bread Rolls",
           Brand: "Wonder",
           Category: "Bread",

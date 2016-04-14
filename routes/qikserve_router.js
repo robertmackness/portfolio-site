@@ -62,7 +62,7 @@ router.get('/discounts', function(req, res, next) {
                 Target: "Soda",
                 Discount_Qty: 3,
                 Discount_Percent: 100,
-                Discount_Set_Price: null, 
+                Discount_Set_Price: 0, 
                 Customer_Msg: "Buy 2 get the third free on all Soda!",
                 Internal_Reason: "Stock nearing Best Before date",
                 Priority_Level: 10
